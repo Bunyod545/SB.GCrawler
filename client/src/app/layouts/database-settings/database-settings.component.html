@@ -1,0 +1,20 @@
+<div class="full-container">
+    <div class="form-container">
+        <img class="logo" src="../../../assets/logo.png" alt="GCrawler">
+        <p class="title">Database settings</p>
+        <div class="form-content">
+            <nz-select nzSize="large" class="provider-input" ngModel="Postgres" nzPlaceHolder="Select provider" nzDisabled>
+                <nz-option nzValue="Postgres" nzLabel="Postgres"></nz-option>
+            </nz-select>
+            <input class="connection-input" nzSize="large" [(ngModel)]="config.connectionString" nz-input placeholder="Connection string" />
+            <nz-alert *ngIf="isError" class="error-message" nzType="error" nzMessage="Error on connection, please retry" nzCloseable nzShowIcon
+            (nzOnClose)="hideError()"
+            ></nz-alert>
+   
+            <button class="next-button" nz-button [nzLoading]="isLoading" nzType="primary" (click)="onNextClick()">
+                Next
+                <i nz-icon nzType="right"></i>
+            </button>
+        </div>
+    </div>
+</div>

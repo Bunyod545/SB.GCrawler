@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AE8AF309-9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.GCrawler", "src\SB.GCrawler\SB.GCrawler.csproj", "{72DD3AF3-2AAC-4EA0-A883-68BF10EED663}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.GCrawler.Test", "test\SB.GCrawler.Test\SB.GCrawler.Test.csproj", "{83ACBB38-7124-4222-9988-32BA439D82E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.GCrawler.Test", "test\SB.GCrawler.Test\SB.GCrawler.Test.csproj", "{83ACBB38-7124-4222-9988-32BA439D82E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.GCrawler.Api", "src\SB.GCrawler.Api\SB.GCrawler.Api.csproj", "{4B2C0A2B-2AD6-4FDF-B5E8-CA63B5C18164}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{83ACBB38-7124-4222-9988-32BA439D82E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83ACBB38-7124-4222-9988-32BA439D82E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83ACBB38-7124-4222-9988-32BA439D82E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B2C0A2B-2AD6-4FDF-B5E8-CA63B5C18164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B2C0A2B-2AD6-4FDF-B5E8-CA63B5C18164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B2C0A2B-2AD6-4FDF-B5E8-CA63B5C18164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B2C0A2B-2AD6-4FDF-B5E8-CA63B5C18164}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{72DD3AF3-2AAC-4EA0-A883-68BF10EED663} = {6B137F30-B676-466C-BDDB-1EF59AA737D0}
 		{83ACBB38-7124-4222-9988-32BA439D82E0} = {AE8AF309-91CB-4FA0-A098-836B7936E7C8}
+		{4B2C0A2B-2AD6-4FDF-B5E8-CA63B5C18164} = {6B137F30-B676-466C-BDDB-1EF59AA737D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AFB8ABD1-6B63-496E-889A-FEF98748AEED}

@@ -8,4 +8,8 @@
     <Folder Include="Logics\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SB.Auto.DependecyInjection.AspNetCore" Version="1.0.3" />
+  </ItemGroup>
+
 </Project>
