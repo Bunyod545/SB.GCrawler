@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Logics\" />
+    <Compile Remove="Logics\**" />
+    <EmbeddedResource Remove="Logics\**" />
+    <None Remove="Logics\**" />
   </ItemGroup>
 
   <ItemGroup>

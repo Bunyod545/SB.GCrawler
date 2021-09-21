@@ -23,7 +23,7 @@ export class DatabaseSettingsService extends BaseService {
      * 
      * @param config 
      */
-    isValidConnectionString(config: DatabaseConfigInfo): Observable<boolean> {
-        return this.post("/api/DatabaseConfig/IsValidConnectionString", config);
+    validateAndSave(config: DatabaseConfigInfo): Observable<boolean> {
+        return this.post("/api/DatabaseConfig/ValidateAndSave", config);
     }
 }

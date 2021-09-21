@@ -11,5 +11,5 @@ export class DatabaseConfigInfo {
     /**
      * 
      */
-    connectionString?: string;
+    connectionString?: string = "Server=localhost;Port=5432;Database=gcrawler;User Id=postgres;Password=passwd;";
 }

@@ -30,9 +30,9 @@ namespace SB.GCrawler.Api.Controllers.Configs
         /// <param name="config"></param>
         /// <returns></returns>
         [HttpPost]
-        public bool IsValidConnectionString(DatabaseConfigInfo config)
+        public bool ValidateAndSave(DatabaseConfigInfo config)
         {
-            return _databaseConfigService.IsValidConnectionString(config);
+            return _databaseConfigService.ValidateAndSave(config);
         }
     }
 }

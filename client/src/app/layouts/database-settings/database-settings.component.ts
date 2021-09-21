@@ -15,7 +15,7 @@ export class DatabaseSettingsComponent implements OnInit {
   /**
    * 
    */
-  config: DatabaseConfigInfo = {};
+  config: DatabaseConfigInfo = new DatabaseConfigInfo();
 
   /**
    * 
@@ -51,9 +51,9 @@ export class DatabaseSettingsComponent implements OnInit {
    * 
    */
   validate() {
-    this.settingsService.isValidConnectionString(this.config).subscribe(
-      res => this.isValidConnectionStringSuccess(res),
-      err => this.isValidConnectionStringError(err)
+    this.settingsService.validateAndSave(this.config).subscribe(
+      res => this.validateAndSaveSuccess(res),
+      err => this.validateAndSaveError(err)
     )
   }
 
@@ -61,7 +61,7 @@ export class DatabaseSettingsComponent implements OnInit {
    * 
    * @param res 
    */
-  isValidConnectionStringSuccess(res: boolean): void {
+  validateAndSaveSuccess(res: boolean): void {
     this.isLoading = false;
     this.isError = !res;
   }
@@ -70,7 +70,7 @@ export class DatabaseSettingsComponent implements OnInit {
    * 
    * @param err 
    */
-  isValidConnectionStringError(err: any): void {
+  validateAndSaveError(err: any): void {
     this.isLoading = false;
     this.isError = true;
   }
