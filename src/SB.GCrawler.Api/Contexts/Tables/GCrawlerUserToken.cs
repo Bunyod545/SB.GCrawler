@@ -5,8 +5,8 @@ namespace SB.GCrawler.Api.Contexts.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("users")]
-    public class GCrawlerUser
+    [Table("user_tokens")]
+    public class GCrawlerUserToken
     {
         /// <summary>
         /// 
@@ -17,25 +17,25 @@ namespace SB.GCrawler.Api.Contexts.Tables
         /// <summary>
         /// 
         /// </summary>
-        [Column("fullname")]
-        public string Fullname { get; set; }
+        [Column("user_id")]
+        public long UserId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [Column("login")]
-        public string Login { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public GCrawlerUser User { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [Column("password_hash")]
-        public string PasswordHash { get; set; }
+        [Column("token")]
+        public string Token { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [Column("password_salt")]
-        public string PasswordSalt { get; set; }
+        [Column("refresh_token")]
+        public string RefreshToken { get; set; }
     }
 }

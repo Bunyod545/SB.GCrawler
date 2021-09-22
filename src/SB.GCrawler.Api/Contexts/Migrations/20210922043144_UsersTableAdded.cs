@@ -15,7 +15,8 @@ namespace SB.GCrawler.Api.Contexts.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     fullname = table.Column<string>(type: "text", nullable: true),
                     login = table.Column<string>(type: "text", nullable: true),
-                    password_hash = table.Column<string>(type: "text", nullable: true)
+                    password_hash = table.Column<string>(type: "text", nullable: true),
+                    password_salt = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

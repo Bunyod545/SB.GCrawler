@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SB.GCrawler.Api.Logics;
 
 namespace SB.GCrawler.Api
 {
@@ -34,6 +35,7 @@ namespace SB.GCrawler.Api
         {
             services.AddCors();
             services.UseAutoDI();
+            services.AddJwt();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -61,6 +63,7 @@ namespace SB.GCrawler.Api
                 .AllowAnyMethod());
 
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

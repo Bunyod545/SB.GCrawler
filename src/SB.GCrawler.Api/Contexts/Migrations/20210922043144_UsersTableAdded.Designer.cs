@@ -9,7 +9,7 @@ using SB.GCrawler.Api.Contexts;
 namespace SB.GCrawler.Api.Contexts.Migrations
 {
     [DbContext(typeof(GCrawlerContext))]
-    [Migration("20210921074121_UsersTableAdded")]
+    [Migration("20210922043144_UsersTableAdded")]
     partial class UsersTableAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,10 @@ namespace SB.GCrawler.Api.Contexts.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text")
                         .HasColumnName("password_hash");
+
+                    b.Property<string>("PasswordSalt")
+                        .HasColumnType("text")
+                        .HasColumnName("password_salt");
 
                     b.HasKey("Id");
 
