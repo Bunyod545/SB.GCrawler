@@ -1,0 +1,28 @@
+<div class="full-container">
+    <div class="form-container">
+        <img class="logo" src="../../../assets/logo.png" alt="GCrawler">
+        <p class="title">Sign in</p>
+        <div class="form-content">
+            <input nz-input nzSize="large" class="login-input" placeholder="Enter login" [(ngModel)]="loginInfo.login" />
+            <nz-input-group nzSize="large" class="password-input" [nzSuffix]="suffixTemplate">
+                <input
+                  [type]="passwordVisible ? 'text' : 'password'"
+                  nz-input
+                  placeholder="Enter password"
+                  [(ngModel)]="loginInfo.password"
+                />
+              </nz-input-group>
+              <ng-template #suffixTemplate>
+                <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+              </ng-template>
+            <nz-alert *ngIf="isError" class="error-message" nzType="error" nzMessage="Error on login, please retry" nzCloseable nzShowIcon
+            (nzOnClose)="hideError()"
+            ></nz-alert>
+   
+            <button class="next-button" nz-button [nzLoading]="isLoading" nzType="primary" (click)="onNextClick()">
+                Next
+                <i nz-icon nzType="right"></i>
+            </button>
+        </div>
+    </div>
+</div>
