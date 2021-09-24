@@ -16,7 +16,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
-import { LoginComponent } from './layouts/login/login.component';
+import { LoginComponent } from './layouts/account/pages/login/login.component';
+import { CreateAccountComponent } from './layouts/account/pages/create-account/create-account.component';
 
 registerLocaleData(en);
 
@@ -27,7 +28,8 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     DatabaseSettingsComponent,
-    LoginComponent
+    LoginComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

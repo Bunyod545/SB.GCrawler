@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginInfo } from './models/login-info';
+import { LoginInfo } from '../../models/login-info';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   /**
    * 
    */
-  isLoading?:boolean;
+  isLoading?: boolean;
 
   /**
    * 
@@ -44,10 +44,10 @@ export class LoginComponent implements OnInit {
    */
   onNextClick() {
     this.isLoading = true;
-    setTimeout(()=>this.login(), 1000);
+    setTimeout(()=>this.login(this.loginInfo), 1000);
   }
 
-  login() {
+  login(info: LoginInfo) {
     
   }
 

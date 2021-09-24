@@ -1,0 +1,30 @@
+<div class="full-container">
+    <div class="form-container">
+        <img class="logo" src="../../../assets/logo.png" alt="GCrawler">
+        <p class="title">Create account</p>
+        <div class="form-content">
+            <input nz-input nzSize="large" class="fullname-input" placeholder="Full name" [(ngModel)]="registerInfo.fullName" />
+            <input nz-input nzSize="large" class="login-input" placeholder="Login" [(ngModel)]="registerInfo.login" />
+            <nz-input-group nzSize="large" class="password-input" [nzSuffix]="suffixTemplate">
+                <input
+                  [type]="passwordVisible ? 'text' : 'password'"
+                  nz-input
+                  placeholder="Password"
+                  [(ngModel)]="registerInfo.password"
+                />
+              </nz-input-group>
+              <ng-template #suffixTemplate>
+                <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+              </ng-template>
+
+            <nz-alert *ngIf="isError" class="error-message" nzType="error" nzMessage="errorMessage" nzCloseable nzShowIcon
+            (nzOnClose)="hideError()"
+            ></nz-alert>
+   
+            <button class="next-button" nz-button [nzLoading]="isLoading" nzType="primary" (click)="onNextClick()">
+                Next
+                <i nz-icon nzType="right"></i>
+            </button>
+        </div>
+    </div>
+</div>

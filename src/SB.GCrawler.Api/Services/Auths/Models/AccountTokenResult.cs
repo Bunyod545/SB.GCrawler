@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public class AuthResult
+    public class AccountTokenResult
     {
         /// <summary>
         /// 
@@ -26,7 +26,7 @@
         /// <param name="token"></param>
         /// <param name="refreshToken"></param>
         /// <param name="fullName"></param>
-        public AuthResult(string token, string refreshToken, string fullName)
+        public AccountTokenResult(string token, string refreshToken, string fullName)
         {
             Token = token;
             RefeshToken = refreshToken;

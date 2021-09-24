@@ -10,18 +10,18 @@ namespace SB.GCrawler.Api.Controllers.Auths
     /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AccountController : ControllerBase
     {
         /// <summary>
         /// 
         /// </summary>
-        private readonly IAuthService _authService;
+        private readonly IAccountService _authService;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="authService"></param>
-        public AuthController(IAuthService authService)
+        public AccountController(IAccountService authService)
         {
             _authService = authService;
         }
@@ -32,7 +32,7 @@ namespace SB.GCrawler.Api.Controllers.Auths
         /// <param name="info"></param>
         /// <returns></returns>
         [HttpPost]
-        public ApiResponse<AuthResult> Login(LoginInfo info)
+        public ApiResponse<AccountTokenResult> Login(LoginInfo info)
         {
             return _authService.Login(info);
         }
@@ -43,9 +43,9 @@ namespace SB.GCrawler.Api.Controllers.Auths
         /// <param name="info"></param>
         /// <returns></returns>
         [HttpPost]
-        public ApiResponse<AuthResult> Register(RegisterInfo info)
+        public ApiResponse<AccountTokenResult> CreateAccount(RegisterInfo info)
         {
-            return _authService.Register(info);
+            return _authService.CreateAccount(info);
         }
 
     }

@@ -6,20 +6,20 @@ namespace SB.GCrawler.Api.Services.Auths
     /// <summary>
     /// 
     /// </summary>
-    public interface IAuthService
+    public interface IAccountService
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        ApiResponse<AuthResult> Login(LoginInfo info);
+        ApiResponse<AccountTokenResult> Login(LoginInfo info);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        ApiResponse<AuthResult> Register(RegisterInfo info);
+        ApiResponse<AccountTokenResult> CreateAccount(RegisterInfo info);
     }
 }

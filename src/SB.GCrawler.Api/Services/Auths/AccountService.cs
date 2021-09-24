@@ -14,7 +14,7 @@ namespace SB.GCrawler.Api.Services.Auths
     /// 
     /// </summary>
     [ScopedService]
-    public class AuthService : IAuthService
+    public class AccountService : IAccountService
     {
         /// <summary>
         /// 
@@ -25,7 +25,7 @@ namespace SB.GCrawler.Api.Services.Auths
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public AuthService(GCrawlerContext context)
+        public AccountService(GCrawlerContext context)
         {
             _context = context;
         }
@@ -35,7 +35,7 @@ namespace SB.GCrawler.Api.Services.Auths
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        public ApiResponse<AuthResult> Login(LoginInfo info)
+        public ApiResponse<AccountTokenResult> Login(LoginInfo info)
         {
             var user = _context.Users.FirstOrDefault(f => f.Login.ToLower() == info.Login.ToLower());
             if (user is null)
@@ -53,7 +53,7 @@ namespace SB.GCrawler.Api.Services.Auths
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        public ApiResponse<AuthResult> Register(RegisterInfo info)
+        public ApiResponse<AccountTokenResult> CreateAccount(RegisterInfo info)
         {
             var user = _context.Users.FirstOrDefault(f => f.Login.ToLower() == info.Login.ToLower());
             if (user is not null)
@@ -77,7 +77,7 @@ namespace SB.GCrawler.Api.Services.Auths
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        private AuthResult GenerateAndSaveUserToken(GCrawlerUser user)
+        private AccountTokenResult GenerateAndSaveUserToken(GCrawlerUser user)
         {
             var userToken = _context.UserTokens.FirstOrDefault(f => f.UserId == user.Id);
             if (userToken is null)
@@ -91,7 +91,7 @@ namespace SB.GCrawler.Api.Services.Auths
             userToken.RefreshToken = JwtHelper.GetGuidToken();
             _context.SaveChanges();
 
-            return new AuthResult(userToken.Token, userToken.RefreshToken, user.Fullname);
+            return new AccountTokenResult(userToken.Token, userToken.RefreshToken, user.Fullname);
         }
     }
 }

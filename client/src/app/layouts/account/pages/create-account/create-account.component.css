@@ -1,0 +1,64 @@
+.full-container {
+    background-image: url("../../../../../assets/images/backgrounds/db-settings-background.svg");
+    background-repeat: no-repeat;
+}
+
+.form-container {
+    margin: auto;
+    width: 440px;
+    background-color: white;
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+    min-width: 320px;
+    min-height: 338px;
+    overflow: hidden;
+    padding: 44px;
+}
+
+.logo {
+    height: 50px;
+    width: 170px;
+}
+
+.title {
+    color: #1b1b1b;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0;
+    margin-top: 16px;
+    margin-bottom: 12px;
+    font-family: "Segoe UI", "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima", "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI", "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha", "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
+}
+
+i {
+    cursor: pointer;
+  }
+
+.fullname-input {
+    width: 100%;
+}
+
+.login-input {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.password-input {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.error-message {
+    margin-top: 15px;
+}
+
+.next-button {
+    background-color: #0067b8;
+    float: right;
+    margin-top: 30px;
+    width: 100px;
+}
