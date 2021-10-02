@@ -5,6 +5,8 @@ using SB.GCrawler.Api.Logics.Helpers;
 using SB.GCrawler.Api.Logics.Models;
 using SB.GCrawler.Api.Logics.Resources;
 using SB.GCrawler.Api.Services.Auths.Models;
+using SB.GCrawler.Api.Services.UserTokens;
+using SB.GCrawler.Api.Services.UserTokens.Models;
 using System.Linq;
 using System.Net;
 
@@ -24,10 +26,16 @@ namespace SB.GCrawler.Api.Services.Auths
         /// <summary>
         /// 
         /// </summary>
+        private readonly IUserTokenService _tokenService;
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="context"></param>
-        public AccountService(GCrawlerContext context)
+        public AccountService(GCrawlerContext context, IUserTokenService tokenService)
         {
             _context = context;
+            _tokenService = tokenService;
         }
 
         /// <summary>
@@ -35,7 +43,7 @@ namespace SB.GCrawler.Api.Services.Auths
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        public ApiResponse<AccountTokenResult> Login(LoginInfo info)
+        public ApiResponse<TokenResult> Login(LoginInfo info)
         {
             var user = _context.Users.FirstOrDefault(f => f.Login.ToLower() == info.Login.ToLower());
             if (user is null)
@@ -45,7 +53,7 @@ namespace SB.GCrawler.Api.Services.Auths
             if (!verified)
                 return new ApiResponseError(HttpStatusCode.NotFound, UITexts.InvalidPassword);
 
-            return GenerateAndSaveUserToken(user);
+            return _tokenService.GenerateAndSaveUserToken(user);
         }
 
         /// <summary>
@@ -53,8 +61,12 @@ namespace SB.GCrawler.Api.Services.Auths
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        public ApiResponse<AccountTokenResult> CreateAccount(RegisterInfo info)
+        public ApiResponse<TokenResult> CreateAccount(RegisterInfo info)
         {
+            var validation = ValidateModel(info);
+            if (validation.IsSuccess == false)
+                return validation.Error;
+            
             var user = _context.Users.FirstOrDefault(f => f.Login.ToLower() == info.Login.ToLower());
             if (user is not null)
                 return new ApiResponseError(HttpStatusCode.BadRequest, UITexts.LoginAlreadyExists);
@@ -69,29 +81,26 @@ namespace SB.GCrawler.Api.Services.Auths
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            return GenerateAndSaveUserToken(user);
+            return _tokenService.GenerateAndSaveUserToken(user);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="info"></param>
         /// <returns></returns>
-        private AccountTokenResult GenerateAndSaveUserToken(GCrawlerUser user)
+        private ApiResponse<TokenResult> ValidateModel(RegisterInfo info)
         {
-            var userToken = _context.UserTokens.FirstOrDefault(f => f.UserId == user.Id);
-            if (userToken is null)
-            {
-                userToken = new GCrawlerUserToken();
-                userToken.UserId = user.Id;
-                _context.UserTokens.Add(userToken);
-            }
+            if (string.IsNullOrEmpty(info?.Fullname))
+                return new ApiResponseError(HttpStatusCode.BadRequest, UITexts.FullNameIsEmpty);
 
-            userToken.Token = JwtHelper.GetToken(user.Id.ToString());
-            userToken.RefreshToken = JwtHelper.GetGuidToken();
-            _context.SaveChanges();
+            if (string.IsNullOrEmpty(info?.Login))
+                return new ApiResponseError(HttpStatusCode.BadRequest, UITexts.LoginIsEmpty);
 
-            return new AccountTokenResult(userToken.Token, userToken.RefreshToken, user.Fullname);
+            if (string.IsNullOrEmpty(info?.Password))
+                return new ApiResponseError(HttpStatusCode.BadRequest, UITexts.PasswordIsEmpty);
+
+            return new ApiResponse<TokenResult>();
         }
     }
 }

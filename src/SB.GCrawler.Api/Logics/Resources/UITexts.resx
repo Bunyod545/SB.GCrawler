@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FullNameIsEmpty" xml:space="preserve">
+    <value>FullName is empty, field shouldn't be empty</value>
+  </data>
   <data name="InvalidLogin" xml:space="preserve">
     <value>Invalid login, please try again</value>
   </data>
@@ -125,5 +128,11 @@
   </data>
   <data name="LoginAlreadyExists" xml:space="preserve">
     <value>Login already exists</value>
+  </data>
+  <data name="LoginIsEmpty" xml:space="preserve">
+    <value>Login is empty, field shouldn't be empty</value>
+  </data>
+  <data name="PasswordIsEmpty" xml:space="preserve">
+    <value>Password is empty, field shouldn't be empty</value>
   </data>
 </root>

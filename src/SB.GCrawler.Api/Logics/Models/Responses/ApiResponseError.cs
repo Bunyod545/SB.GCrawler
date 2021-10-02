@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using SB.GCrawler.Api.Logics.Helpers;
+using System.Net;
+using System.Net.Mail;
 
 namespace SB.GCrawler.Api.Logics.Models
 {

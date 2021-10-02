@@ -61,6 +61,15 @@ namespace SB.GCrawler.Api.Logics.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FullName is empty, field shouldn&apos;t be empty.
+        /// </summary>
+        internal static string FullNameIsEmpty {
+            get {
+                return ResourceManager.GetString("FullNameIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid login, please try again.
         /// </summary>
         internal static string InvalidLogin {
@@ -84,6 +93,24 @@ namespace SB.GCrawler.Api.Logics.Resources {
         internal static string LoginAlreadyExists {
             get {
                 return ResourceManager.GetString("LoginAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login is empty, field shouldn&apos;t be empty.
+        /// </summary>
+        internal static string LoginIsEmpty {
+            get {
+                return ResourceManager.GetString("LoginIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is empty, field shouldn&apos;t be empty.
+        /// </summary>
+        internal static string PasswordIsEmpty {
+            get {
+                return ResourceManager.GetString("PasswordIsEmpty", resourceCulture);
             }
         }
     }

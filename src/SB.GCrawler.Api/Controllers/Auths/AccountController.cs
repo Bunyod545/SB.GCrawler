@@ -32,7 +32,7 @@ namespace SB.GCrawler.Api.Controllers.Auths
         /// <param name="info"></param>
         /// <returns></returns>
         [HttpPost]
-        public ApiResponse<AccountTokenResult> Login(LoginInfo info)
+        public ApiResponse<TokenResult> Login(LoginInfo info)
         {
             return _authService.Login(info);
         }
@@ -43,7 +43,7 @@ namespace SB.GCrawler.Api.Controllers.Auths
         /// <param name="info"></param>
         /// <returns></returns>
         [HttpPost]
-        public ApiResponse<AccountTokenResult> CreateAccount(RegisterInfo info)
+        public ApiResponse<TokenResult> CreateAccount(RegisterInfo info)
         {
             return _authService.CreateAccount(info);
         }

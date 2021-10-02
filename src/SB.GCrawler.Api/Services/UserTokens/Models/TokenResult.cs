@@ -1,9 +1,9 @@
-﻿namespace SB.GCrawler.Api.Services.Auths.Models
+﻿namespace SB.GCrawler.Api.Services.UserTokens.Models
 {
     /// <summary>
     /// 
     /// </summary>
-    public class AccountTokenResult
+    public class TokenResult
     {
         /// <summary>
         /// 
@@ -26,7 +26,7 @@
         /// <param name="token"></param>
         /// <param name="refreshToken"></param>
         /// <param name="fullName"></param>
-        public AccountTokenResult(string token, string refreshToken, string fullName)
+        public TokenResult(string token, string refreshToken, string fullName)
         {
             Token = token;
             RefeshToken = refreshToken;

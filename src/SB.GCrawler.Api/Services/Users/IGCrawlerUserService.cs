@@ -1,4 +1,8 @@
-﻿namespace SB.GCrawler.Api.Services.Users
+﻿using SB.GCrawler.Api.Logics.Models;
+using SB.GCrawler.Api.Services.Users.Models;
+using SB.GCrawler.Api.Services.UserTokens.Models;
+
+namespace SB.GCrawler.Api.Services.Users
 {
     /// <summary>
     /// 
@@ -9,6 +13,11 @@
         /// 
         /// </summary>
         /// <returns></returns>
-        bool AnyUserExists();
+        ApiResponse<bool> AnyUserExists();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ApiResponse<TokenResult> InitUser(InitUserInfo info);
     }
 }

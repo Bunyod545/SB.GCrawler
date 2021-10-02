@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SB.GCrawler.Api.Logics;
+using SB.GCrawler.Api.Logics.Helpers;
 
 namespace SB.GCrawler.Api
 {
@@ -36,6 +38,7 @@ namespace SB.GCrawler.Api
             services.AddCors();
             services.UseAutoDI();
             services.AddJwt();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -65,10 +68,7 @@ namespace SB.GCrawler.Api
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
