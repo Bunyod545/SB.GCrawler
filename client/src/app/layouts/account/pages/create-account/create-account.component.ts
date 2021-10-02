@@ -32,6 +32,11 @@ export class CreateAccountComponent implements OnInit {
 
    /**
     * 
+    */
+   errorMessage?: string;
+
+   /**
+    * 
     * @param accountService 
     */
   constructor(private accountService: AccountService) { }
@@ -62,6 +67,7 @@ export class CreateAccountComponent implements OnInit {
     this.isLoading = false;
     this.isError = !res.isSuccess;
 
+    console.log('Success');
     console.log(res);
   }
 
@@ -72,7 +78,11 @@ export class CreateAccountComponent implements OnInit {
   private onCreateAccountError(err: any) {
     this.isLoading = false;
     this.isError = true;
-    console.log(err.message);
+    this.errorMessage = err.error.error.errorMessage;
+
+
+    console.log('Error');
+    console.log(err.error.error.errorMessage);
   }
 
   /**
