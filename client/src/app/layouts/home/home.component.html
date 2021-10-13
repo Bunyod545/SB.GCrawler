@@ -1,0 +1,9 @@
+<app-home-header (menuClicked)="isShowSidebar = !isShowSidebar"></app-home-header>
+<div class="home-container">
+    <div class="home-sidebar-container" [class.sidebar-hidden]="isShowSidebar">
+        <app-home-sidebar></app-home-sidebar>
+    </div>
+    <div class="home-content-container">
+        <app-home-content></app-home-content>
+    </div>
+</div>

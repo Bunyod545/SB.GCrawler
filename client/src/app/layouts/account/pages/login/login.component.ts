@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginInfo } from '../../models/login-info';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
   /**
    * 
    */
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   /**
    * 

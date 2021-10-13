@@ -9,15 +9,21 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { LoginComponent } from './layouts/account/pages/login/login.component';
-import { CreateAccountComponent } from './layouts/account/pages/create-account/create-account.component';
+import { InitUserComponent } from './layouts/init-user/init-user.component';
+import { HomeComponent } from './layouts/home/home.component';
+import { JwtInterceptor } from './common/helpers/jwt-interceptor';
+import { HomeHeaderComponent } from './layouts/home/components/home-header/home-header.component';
+import { HomeSidebarComponent } from './layouts/home/components/home-sidebar/home-sidebar.component';
+import { HomeContentComponent } from './layouts/home/components/home-content/home-content.component';
 
 registerLocaleData(en);
 
@@ -29,7 +35,11 @@ registerLocaleData(en);
     AppComponent,
     DatabaseSettingsComponent,
     LoginComponent,
-    CreateAccountComponent
+    InitUserComponent,
+    HomeComponent,
+    HomeHeaderComponent,
+    HomeSidebarComponent,
+    HomeContentComponent
   ],
   imports: [
     BrowserModule,
@@ -37,13 +47,16 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NzDividerModule,
     NzSelectModule,
     NzInputModule,
     NzButtonModule,
     NzIconModule,
     NzAlertModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

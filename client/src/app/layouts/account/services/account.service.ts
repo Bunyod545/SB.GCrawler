@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ApiResponse } from 'src/app/common/models/responses/api-response';
-import { BaseService } from '../../../common/helpers/base-service';
-import { AccountTokenResult } from '../models/account-token-result';
+import { BaseService } from '../../../common/services/base-service';
 import { LoginInfo } from '../models/login-info';
-import { RegisterInfo } from '../models/register-info';
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +26,8 @@ export class AccountService extends BaseService {
 
    /**
     * 
-    * @param info 
     */
-  public createAccount(info: RegisterInfo) {
-     return this.post('/api/Account/CreateAccount', info);
+   public getToken() {
+     return localStorage.getItem('access_token');
    }
 }

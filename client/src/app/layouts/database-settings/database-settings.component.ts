@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DatabaseConfigInfo } from './models/database-config-info';
 import { DatabaseSettingsService } from './services/database-settings-service';
 
@@ -30,7 +31,7 @@ export class DatabaseSettingsComponent implements OnInit {
   /**
    * 
    */
-  constructor(private settingsService: DatabaseSettingsService) { }
+  constructor(private settingsService: DatabaseSettingsService, private router: Router) { }
 
   /**
    * 
@@ -64,6 +65,9 @@ export class DatabaseSettingsComponent implements OnInit {
   validateAndSaveSuccess(res: boolean): void {
     this.isLoading = false;
     this.isError = !res;
+
+    if (res)
+      this.router.navigateByUrl('initUser')
   }
 
   /**

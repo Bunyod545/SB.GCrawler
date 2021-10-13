@@ -16,7 +16,7 @@ namespace SB.GCrawler.Api.Services.Users
     /// 
     /// </summary>
     [ScopedService]
-    public class GCrawlerUserService : IGCrawlerUserService
+    public class UserService : IUserService
     {
         /// <summary>
         /// 
@@ -32,7 +32,7 @@ namespace SB.GCrawler.Api.Services.Users
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public GCrawlerUserService(GCrawlerContext context, IUserTokenService tokenService)
+        public UserService(GCrawlerContext context, IUserTokenService tokenService)
         {
             _context = context;
             _tokenService = tokenService;

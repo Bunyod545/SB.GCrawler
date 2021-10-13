@@ -7,7 +7,7 @@ namespace SB.GCrawler.Api.Services.Users
     /// <summary>
     /// 
     /// </summary>
-    public interface IGCrawlerUserService
+    public interface IUserService
     {
         /// <summary>
         /// 

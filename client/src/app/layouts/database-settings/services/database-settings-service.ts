@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { BaseService } from "src/app/common/helpers/base-service";
+import { BaseService } from "src/app/common/services/base-service";
 import { DatabaseConfigInfo } from "../models/database-config-info";
 
 /**

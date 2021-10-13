@@ -2,6 +2,7 @@
 using SB.GCrawler.Api.Logics.Models;
 using SB.GCrawler.Api.Services.Auths;
 using SB.GCrawler.Api.Services.Auths.Models;
+using SB.GCrawler.Api.Services.UserTokens.Models;
 
 namespace SB.GCrawler.Api.Controllers.Auths
 {
@@ -47,6 +48,5 @@ namespace SB.GCrawler.Api.Controllers.Auths
         {
             return _authService.CreateAccount(info);
         }
-
     }
 }

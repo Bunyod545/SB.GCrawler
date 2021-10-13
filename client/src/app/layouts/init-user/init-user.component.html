@@ -3,14 +3,14 @@
         <img class="logo" src="../../../assets/logo.png" alt="GCrawler">
         <p class="title">Create account</p>
         <div class="form-content">
-            <input nz-input nzSize="large" class="fullname-input" placeholder="Full name" [(ngModel)]="registerInfo.fullName" />
-            <input nz-input nzSize="large" class="login-input" placeholder="Login" [(ngModel)]="registerInfo.login" />
+            <input nz-input nzSize="large" class="fullname-input" placeholder="Full name" [(ngModel)]="initUserInfo.fullName" />
+            <input nz-input nzSize="large" class="login-input" placeholder="Login" [(ngModel)]="initUserInfo.login" />
             <nz-input-group nzSize="large" class="password-input" [nzSuffix]="suffixTemplate">
                 <input
                   [type]="passwordVisible ? 'text' : 'password'"
                   nz-input
                   placeholder="Password"
-                  [(ngModel)]="registerInfo.password"
+                  [(ngModel)]="initUserInfo.password"
                 />
               </nz-input-group>
               <ng-template #suffixTemplate>
