@@ -2,6 +2,8 @@
 using SB.GCrawler.Api.Logics.Models;
 using SB.GCrawler.Api.Services.Auths;
 using SB.GCrawler.Api.Services.Auths.Models;
+using SB.GCrawler.Api.Services.Users;
+using SB.GCrawler.Api.Services.Users.Models;
 using SB.GCrawler.Api.Services.UserTokens.Models;
 
 namespace SB.GCrawler.Api.Controllers.Auths
@@ -17,14 +19,21 @@ namespace SB.GCrawler.Api.Controllers.Auths
         /// 
         /// </summary>
         private readonly IAccountService _authService;
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly IUserService _userService;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="authService"></param>
-        public AccountController(IAccountService authService)
+        /// <param name="userService"></param>
+        public AccountController(IAccountService authService, IUserService userService)
         {
             _authService = authService;
+            _userService = userService;
         }
 
         /// <summary>
@@ -33,10 +42,7 @@ namespace SB.GCrawler.Api.Controllers.Auths
         /// <param name="info"></param>
         /// <returns></returns>
         [HttpPost]
-        public ApiResponse<TokenResult> Login(LoginInfo info)
-        {
-            return _authService.Login(info);
-        }
+        public ApiResponse<TokenResult> Login(LoginInfo info) => _authService.Login(info);
 
         /// <summary>
         /// 
@@ -44,9 +50,6 @@ namespace SB.GCrawler.Api.Controllers.Auths
         /// <param name="info"></param>
         /// <returns></returns>
         [HttpPost]
-        public ApiResponse<TokenResult> CreateAccount(RegisterInfo info)
-        {
-            return _authService.CreateAccount(info);
-        }
+        public ApiResponse<TokenResult> InitUser(InitUserInfo info) => _userService.InitUser(info);
     }
 }

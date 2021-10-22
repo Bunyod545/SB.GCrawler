@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { TokenHelper } from 'src/app/common/helpers/token-helper';
 import { ApiResponse } from 'src/app/common/models/responses/api-response';
 import { TokenResult } from 'src/app/common/models/token-result';
-import { UserService } from 'src/app/common/services/user.service';
-import { InitUserInfo } from '../../common/models/users/init-user-info';
+import { InitUserInfo } from 'src/app/common/models/users/init-user-info';
+import { AccountService } from 'src/app/common/services/account/account.service';
 
 @Component({
   selector: 'app-init-user',
@@ -41,10 +41,10 @@ export class InitUserComponent implements OnInit {
  
     /**
      * 
-     * @param userService 
+     * @param accountService 
      * @param tokenHelper 
      */
-   constructor(private userService: UserService, 
+   constructor(private accountService: AccountService, 
     private tokenHelper: TokenHelper,
     private router: Router) { }
  
@@ -66,7 +66,7 @@ export class InitUserComponent implements OnInit {
     * 
     */
    initUser() {
-     this.userService.initUser(this.initUserInfo).subscribe(
+     this.accountService.initUser(this.initUserInfo).subscribe(
        res => this.onInitUserSuccess(res),
        err => this.onInitUserError(err)
      );

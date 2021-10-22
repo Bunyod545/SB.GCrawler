@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DatabaseConfigInfo } from './models/database-config-info';
-import { DatabaseSettingsService } from './services/database-settings-service';
+import { DatabaseConfigInfo } from '../../common/services/database-settings/models/database-config-info';
+import { DatabaseSettingsService } from '../../common/services/database-settings/database-settings-service';
 
 /**
  * 

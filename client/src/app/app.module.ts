@@ -17,13 +17,13 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
-import { LoginComponent } from './layouts/account/pages/login/login.component';
-import { InitUserComponent } from './layouts/init-user/init-user.component';
 import { HomeComponent } from './layouts/home/home.component';
 import { JwtInterceptor } from './common/helpers/jwt-interceptor';
 import { HomeHeaderComponent } from './layouts/home/components/home-header/home-header.component';
 import { HomeSidebarComponent } from './layouts/home/components/home-sidebar/home-sidebar.component';
 import { HomeContentComponent } from './layouts/home/components/home-content/home-content.component';
+import { InitUserComponent } from './layouts/account/init-user/init-user.component';
+import { LoginComponent } from './layouts/account/login/login.component';
 
 registerLocaleData(en);
 

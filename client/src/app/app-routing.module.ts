@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InitUserComponent } from './layouts/account/init-user/init-user.component';
+import { LoginComponent } from './layouts/account/login/login.component';
 import { DatabaseSettingsComponent } from './layouts/database-settings/database-settings.component';
-import { LoginComponent } from './layouts/account/pages/login/login.component';
-import { InitUserComponent } from './layouts/init-user/init-user.component';
 import { HomeComponent } from './layouts/home/home.component';
 
 /**

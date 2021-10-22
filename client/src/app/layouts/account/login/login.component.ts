@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginInfo } from '../../models/login-info';
-import { AccountService } from '../../services/account.service';
+import { AccountService } from 'src/app/common/services/account/account.service';
+import { LoginInfo } from 'src/app/common/services/account/models/login-info';
 
 @Component({
   selector: 'app-login',
@@ -44,14 +44,24 @@ export class LoginComponent implements OnInit {
    * 
    */
   onNextClick() {
+    if (!this.loginInfo.login || !this.loginInfo.password)
+      return;
+      
     this.isLoading = true;
-    setTimeout(()=>this.login(this.loginInfo), 1000);
+    setTimeout(() => this.login(), 1000);
   }
 
-  login(info: LoginInfo) {
-    
+  /**
+   * 
+   * @param info 
+   */
+  login() {
+    this.isLoading = false;
   }
 
+  /**
+   * 
+   */
   hideError() {
     this.isError = false;
   }
