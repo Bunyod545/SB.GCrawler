@@ -16,13 +16,13 @@ namespace SB.GCrawler.Api.Services.UserTokens
         /// <summary>
         /// 
         /// </summary>
-        private readonly GCrawlerContext _context;
+        private readonly CommonDbContext _context;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public UserTokenService(GCrawlerContext context)
+        public UserTokenService(CommonDbContext context)
         {
             _context = context;
         }

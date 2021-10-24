@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using System;
+using Microsoft.EntityFrameworkCore;
 using SB.Auto.DependenyInjection;
 using SB.GCrawler.Api.Services.Configs.Database;
-using System;
 
 namespace SB.GCrawler.Api.Contexts
 {
@@ -9,9 +9,9 @@ namespace SB.GCrawler.Api.Contexts
     /// 
     /// </summary>
     [ScopedService]
-    public partial class GCrawlerContext : DbContext
+    public partial class CommonDbContext : DbContext
     {
-        /// <summary>
+       /// <summary>
         /// 
         /// </summary>
         private readonly IDatabaseConfigService _configService;
@@ -20,7 +20,7 @@ namespace SB.GCrawler.Api.Contexts
         /// 
         /// </summary>
         /// <param name="configService"></param>
-        public GCrawlerContext(IDatabaseConfigService configService)
+        public CommonDbContext(IDatabaseConfigService configService)
         {
             _configService = configService;
         }

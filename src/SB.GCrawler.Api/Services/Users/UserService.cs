@@ -21,7 +21,7 @@ namespace SB.GCrawler.Api.Services.Users
         /// <summary>
         /// 
         /// </summary>
-        private readonly GCrawlerContext _context;
+        private readonly CommonDbContext _context;
 
         /// <summary>
         /// 
@@ -32,7 +32,7 @@ namespace SB.GCrawler.Api.Services.Users
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public UserService(GCrawlerContext context, IUserTokenService tokenService)
+        public UserService(CommonDbContext context, IUserTokenService tokenService)
         {
             _context = context;
             _tokenService = tokenService;

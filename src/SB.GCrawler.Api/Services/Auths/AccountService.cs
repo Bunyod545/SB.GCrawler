@@ -1,6 +1,5 @@
 ﻿using SB.Auto.DependenyInjection;
 using SB.GCrawler.Api.Contexts;
-using SB.GCrawler.Api.Contexts.Tables;
 using SB.GCrawler.Api.Logics.Helpers;
 using SB.GCrawler.Api.Logics.Models;
 using SB.GCrawler.Api.Logics.Resources;
@@ -21,7 +20,7 @@ namespace SB.GCrawler.Api.Services.Auths
         /// <summary>
         /// 
         /// </summary>
-        private readonly GCrawlerContext _context;
+        private readonly CommonDbContext _context;
 
         /// <summary>
         /// 
@@ -32,7 +31,7 @@ namespace SB.GCrawler.Api.Services.Auths
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public AccountService(GCrawlerContext context, IUserTokenService tokenService)
+        public AccountService(CommonDbContext context, IUserTokenService tokenService)
         {
             _context = context;
             _tokenService = tokenService;

@@ -57,7 +57,7 @@ namespace SB.GCrawler.Api.Services.Configs.Database
                 return false;
 
             var scope = _serviceScopeFactory.CreateScope();
-            var context = scope.ServiceProvider.GetRequiredService<GCrawlerContext>();
+            var context = scope.ServiceProvider.GetRequiredService<CommonDbContext>();
             
             context.Database.Migrate();
             scope.Dispose();

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SB.GCrawler.Api.Contexts.Tables;
 
 namespace SB.GCrawler.Api.Contexts
@@ -6,7 +6,7 @@ namespace SB.GCrawler.Api.Contexts
     /// <summary>
     /// 
     /// </summary>
-    public partial class GCrawlerContext : DbContext
+    public partial class CommonDbContext : DbContext
     {
         /// <summary>
         /// 
@@ -22,10 +22,5 @@ namespace SB.GCrawler.Api.Contexts
         /// 
         /// </summary>
         public DbSet<GCrawlerSite> Sites { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public DbSet<GCrawlerSiteMap> SiteMaps { get; set; }
     }
 }
