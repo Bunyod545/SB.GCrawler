@@ -17,5 +17,15 @@ namespace SB.GCrawler.Api.Contexts
         /// 
         /// </summary>
         public DbSet<GCrawlerUserToken> UserTokens { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<GCrawlerSite> Sites { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<GCrawlerSiteMap> SiteMaps { get; set; }
     }
 }
