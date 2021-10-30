@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Services\SiteMapDownloaders\Helpers\TestSiteMap.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Services\SiteMapDownloaders\Helpers\TestSiteMap.xml" />
   </ItemGroup>
 
