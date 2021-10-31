@@ -1,3 +1,5 @@
+using System.IO;
+using System.Linq;
 using System;
 using System.Collections.Generic;
 
@@ -8,6 +10,11 @@ namespace SB.GCrawler.Services.RobotsTexts
     /// </summary>
     public class RobotsTextFile
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private RobotsTextsAccessHelper _accessHelper;
+
         /// <summary>
         /// 
         /// </summary>
@@ -39,6 +46,7 @@ namespace SB.GCrawler.Services.RobotsTexts
         /// </summary>
         public RobotsTextFile()
         {
+            _accessHelper = new RobotsTextsAccessHelper();
             UserAgents = new List<RobotsTextUserAgent>();
             SiteMaps = new List<RobotsTextSiteMap>();
         }
@@ -54,22 +62,31 @@ namespace SB.GCrawler.Services.RobotsTexts
 
         /// <summary>
         /// 
-        /// /// </summary>
-        /// <param name="uri"></param>
+        /// </summary>
+        /// <param name="url"></param>
         /// <returns></returns>
-        public bool IsAllow(Uri uri)
+        public bool IsAllow(string userAgent, string url)
         {
-            return false;
+            if (url == null)
+                return false;
+
+            return IsAllow(userAgent, new Uri(url));
         }
 
         /// <summary>
         /// 
-        /// </summary>
-        /// <param name="url"></param>
+        /// /// </summary>
+        /// <param name="uri"></param>
         /// <returns></returns>
-        public bool IsAllow(string url)
+        public bool IsAllow(string userAgent, Uri uri)
         {
-            return false;
+            if (!uri.IsAbsoluteUri)
+                uri = new Uri(new Uri(BaseUrl), uri);
+
+            var agent = UserAgents.FirstOrDefault(f => f.AgentName == userAgent);
+            agent = agent ?? UserAgents.FirstOrDefault(f => f.AgentName == "*");
+
+            return _accessHelper.IsAllowed(agent, uri);
         }
     }
 }
