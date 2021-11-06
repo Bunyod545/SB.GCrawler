@@ -19,6 +19,12 @@ namespace SB.GCrawler.Api.Contexts
         /// <summary>
         /// 
         /// </summary>
+        /// <value></value>
+        public string Schema { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="configService"></param>
         public MultiSchemaContext(IDatabaseConfigService configService)
         {

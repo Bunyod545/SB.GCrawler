@@ -11,6 +11,16 @@ namespace SB.GCrawler.Api.Contexts
         /// <summary>
         /// 
         /// </summary>
+        public DbSet<GCrawlerAdmin> Admins { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<GCrawlerAdminToken> AdminTokens { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public DbSet<GCrawlerUser> Users { get; set; }
 
         /// <summary>
