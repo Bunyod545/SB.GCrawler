@@ -7,8 +7,12 @@ namespace SB.GCrawler.Api.Migrations.Common
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "public");
+
             migrationBuilder.CreateTable(
                 name: "admins",
+                schema: "public",
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
@@ -25,6 +29,7 @@ namespace SB.GCrawler.Api.Migrations.Common
 
             migrationBuilder.CreateTable(
                 name: "users",
+                schema: "public",
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
@@ -41,6 +46,7 @@ namespace SB.GCrawler.Api.Migrations.Common
 
             migrationBuilder.CreateTable(
                 name: "admin_tokens",
+                schema: "public",
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
@@ -55,6 +61,7 @@ namespace SB.GCrawler.Api.Migrations.Common
                     table.ForeignKey(
                         name: "FK_admin_tokens_admins_admin_id",
                         column: x => x.admin_id,
+                        principalSchema: "public",
                         principalTable: "admins",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -62,6 +69,7 @@ namespace SB.GCrawler.Api.Migrations.Common
 
             migrationBuilder.CreateTable(
                 name: "sites",
+                schema: "public",
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
@@ -75,6 +83,7 @@ namespace SB.GCrawler.Api.Migrations.Common
                     table.ForeignKey(
                         name: "FK_sites_users_user_id",
                         column: x => x.user_id,
+                        principalSchema: "public",
                         principalTable: "users",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -82,6 +91,7 @@ namespace SB.GCrawler.Api.Migrations.Common
 
             migrationBuilder.CreateTable(
                 name: "user_tokens",
+                schema: "public",
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
@@ -96,6 +106,7 @@ namespace SB.GCrawler.Api.Migrations.Common
                     table.ForeignKey(
                         name: "FK_user_tokens_users_user_id",
                         column: x => x.user_id,
+                        principalSchema: "public",
                         principalTable: "users",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -103,16 +114,19 @@ namespace SB.GCrawler.Api.Migrations.Common
 
             migrationBuilder.CreateIndex(
                 name: "IX_admin_tokens_admin_id",
+                schema: "public",
                 table: "admin_tokens",
                 column: "admin_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_sites_user_id",
+                schema: "public",
                 table: "sites",
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_user_tokens_user_id",
+                schema: "public",
                 table: "user_tokens",
                 column: "user_id");
         }
@@ -120,19 +134,24 @@ namespace SB.GCrawler.Api.Migrations.Common
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "admin_tokens");
+                name: "admin_tokens",
+                schema: "public");
 
             migrationBuilder.DropTable(
-                name: "sites");
+                name: "sites",
+                schema: "public");
 
             migrationBuilder.DropTable(
-                name: "user_tokens");
+                name: "user_tokens",
+                schema: "public");
 
             migrationBuilder.DropTable(
-                name: "admins");
+                name: "admins",
+                schema: "public");
 
             migrationBuilder.DropTable(
-                name: "users");
+                name: "users",
+                schema: "public");
         }
     }
 }

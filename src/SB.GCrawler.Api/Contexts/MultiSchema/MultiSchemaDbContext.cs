@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using SB.Auto.DependenyInjection;
+using SB.GCrawler.Api.Contexts.MultiSchema;
 using SB.GCrawler.Api.Services.Configs.Database;
 using System;
 
@@ -9,7 +12,7 @@ namespace SB.GCrawler.Api.Contexts
     /// 
     /// </summary>
     [ScopedService]
-    public partial class MultiSchemaContext : DbContext
+    public partial class MultiSchemaDbContext : DbContext, IMultiSchemaDbContext
     {
         /// <summary>
         /// 
@@ -20,13 +23,13 @@ namespace SB.GCrawler.Api.Contexts
         /// 
         /// </summary>
         /// <value></value>
-        public string Schema { get; set; }
-        
+        public string TableSchema { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="configService"></param>
-        public MultiSchemaContext(IDatabaseConfigService configService)
+        public MultiSchemaDbContext(IDatabaseConfigService configService)
         {
             _configService = configService;
         }
@@ -39,6 +42,10 @@ namespace SB.GCrawler.Api.Contexts
         {
             var configInfo = GetDbConfigInfo();
             optionsBuilder.UseNpgsql(configInfo.ConnectionString);
+
+            optionsBuilder.ReplaceService<IHistoryRepository, MultiSchemaHistoryRepository>();
+            optionsBuilder.ReplaceService<IMigrationsSqlGenerator, MultiSchemaMigrationsSqlGenerator>();
+            optionsBuilder.ReplaceService<IModelCacheKeyFactory, MultiSchemaModelCacheKeyFactory>();
         }
 
         /// <summary>
@@ -52,6 +59,15 @@ namespace SB.GCrawler.Api.Contexts
                 throw new Exception("Database not configured");
 
             return config;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            this.SetTablesSchema(modelBuilder);
         }
     }
 }

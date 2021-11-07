@@ -6,7 +6,7 @@ namespace SB.GCrawler.Api.Contexts
     /// <summary>
     /// 
     /// </summary>
-    public partial class MultiSchemaContext : DbContext
+    public partial class MultiSchemaDbContext : DbContext
     {
         /// <summary>
         /// 

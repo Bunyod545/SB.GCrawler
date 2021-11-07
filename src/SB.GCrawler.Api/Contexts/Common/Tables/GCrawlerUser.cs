@@ -5,7 +5,7 @@ namespace SB.GCrawler.Api.Contexts.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("users")]
+    [Table("users", Schema = "public")]
     public class GCrawlerUser
     {
         /// <summary>

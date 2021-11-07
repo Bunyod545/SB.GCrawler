@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SB.GCrawler.Api.Contexts;
 
-namespace SB.GCrawler.Api.Migrations.Common
+namespace SB.GCrawler.Api.Migrations.MultiSchema
 {
-    [DbContext(typeof(CommonDbContext))]
-    [Migration("20211103164430_DatabaseInit")]
-    partial class DatabaseInit
+    [DbContext(typeof(MultiSchemaDbContext))]
+    [Migration("20211107092301_MultiSchemaDatabaseInit")]
+    partial class MultiSchemaDatabaseInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,62 +19,6 @@ namespace SB.GCrawler.Api.Migrations.Common
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerAdmin", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Fullname")
-                        .HasColumnType("text")
-                        .HasColumnName("fullname");
-
-                    b.Property<string>("Login")
-                        .HasColumnType("text")
-                        .HasColumnName("login");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("text")
-                        .HasColumnName("password_hash");
-
-                    b.Property<string>("PasswordSalt")
-                        .HasColumnType("text")
-                        .HasColumnName("password_salt");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("admins");
-                });
-
-            modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerAdminToken", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<long>("AdminId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("admin_id");
-
-                    b.Property<string>("RefreshToken")
-                        .HasColumnType("text")
-                        .HasColumnName("refresh_token");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("text")
-                        .HasColumnName("token");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdminId");
-
-                    b.ToTable("admin_tokens");
-                });
 
             modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerSite", b =>
                 {
@@ -96,7 +40,65 @@ namespace SB.GCrawler.Api.Migrations.Common
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("sites");
+                    b.ToTable("sites", "public", t => t.ExcludeFromMigrations());
+                });
+
+            modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerSiteMap", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("file_url");
+
+                    b.Property<long>("SiteId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("site_id");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SiteId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("site_maps");
+                });
+
+            modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerSitePage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<long>("SiteId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("site_id");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("text")
+                        .HasColumnName("url");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SiteId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("site_pages");
                 });
 
             modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerUser", b =>
@@ -125,45 +127,7 @@ namespace SB.GCrawler.Api.Migrations.Common
 
                     b.HasKey("Id");
 
-                    b.ToTable("users");
-                });
-
-            modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerUserToken", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("RefreshToken")
-                        .HasColumnType("text")
-                        .HasColumnName("refresh_token");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("text")
-                        .HasColumnName("token");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("user_tokens");
-                });
-
-            modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerAdminToken", b =>
-                {
-                    b.HasOne("SB.GCrawler.Api.Contexts.Tables.GCrawlerAdmin", "User")
-                        .WithMany()
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                    b.ToTable("users", "public", t => t.ExcludeFromMigrations());
                 });
 
             modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerSite", b =>
@@ -177,13 +141,40 @@ namespace SB.GCrawler.Api.Migrations.Common
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerUserToken", b =>
+            modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerSiteMap", b =>
                 {
+                    b.HasOne("SB.GCrawler.Api.Contexts.Tables.GCrawlerSite", "Site")
+                        .WithMany()
+                        .HasForeignKey("SiteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SB.GCrawler.Api.Contexts.Tables.GCrawlerUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Site");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SB.GCrawler.Api.Contexts.Tables.GCrawlerSitePage", b =>
+                {
+                    b.HasOne("SB.GCrawler.Api.Contexts.Tables.GCrawlerSite", "Site")
+                        .WithMany()
+                        .HasForeignKey("SiteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SB.GCrawler.Api.Contexts.Tables.GCrawlerUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Site");
 
                     b.Navigation("User");
                 });

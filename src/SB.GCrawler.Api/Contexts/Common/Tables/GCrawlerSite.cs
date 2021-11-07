@@ -5,7 +5,7 @@ namespace SB.GCrawler.Api.Contexts.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("sites")]
+    [Table("sites", Schema = "public")]
     public class GCrawlerSite
     {
         /// <summary>
@@ -30,6 +30,6 @@ namespace SB.GCrawler.Api.Contexts.Tables
         /// 
         /// </summary>
         [ForeignKey(nameof(UserId))]
-        public GCrawlerUser User { get; set; }
+        public virtual GCrawlerUser User { get; set; }
     }
 }

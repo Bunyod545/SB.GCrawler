@@ -30,7 +30,7 @@ namespace SB.GCrawler.Api.Contexts.Tables
         /// 
         /// </summary>
         [ForeignKey(nameof(UserId))]
-        public GCrawlerUser User { get; set; }
+        public virtual GCrawlerUser User { get; set; }
 
         /// <summary>
         /// 
@@ -41,7 +41,7 @@ namespace SB.GCrawler.Api.Contexts.Tables
         /// <summary>
         /// 
         /// </summary>
-        [ForeignKey(nameof(Site))]
-        public GCrawlerSite Site { get; set; }
+        [ForeignKey(nameof(SiteId))]
+        public virtual GCrawlerSite Site { get; set; }
     }
 }

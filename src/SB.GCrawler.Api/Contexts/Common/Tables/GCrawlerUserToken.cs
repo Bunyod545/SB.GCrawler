@@ -5,7 +5,7 @@ namespace SB.GCrawler.Api.Contexts.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("user_tokens")]
+    [Table("user_tokens", Schema = "public")]
     public class GCrawlerUserToken
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace SB.GCrawler.Api.Contexts.Tables
         /// 
         /// </summary>
         [ForeignKey(nameof(UserId))]
-        public GCrawlerUser User { get; set; }
+        public virtual GCrawlerUser User { get; set; }
 
         /// <summary>
         /// 

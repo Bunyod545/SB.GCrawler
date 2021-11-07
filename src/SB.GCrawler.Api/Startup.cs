@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SB.GCrawler.Api.Logics;
+using SB.GCrawler.Api.Services.Database;
 
 namespace SB.GCrawler.Api
 {
@@ -67,6 +68,20 @@ namespace SB.GCrawler.Api
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            MigrateDatabase(app);
+        }
+
+        /// <summary>
+        /// 
+        /// /// </summary>
+        /// <param name="app"></param>
+        private void MigrateDatabase(IApplicationBuilder app)
+        {
+            var scopeFactory = app.ApplicationServices.GetService<IServiceScopeFactory>();
+            using var scope = scopeFactory.CreateScope();
+
+            var databaseService = scope.ServiceProvider.GetService<IDatabaseService>();
+            databaseService.MigrateDatabase();
         }
     }
 }

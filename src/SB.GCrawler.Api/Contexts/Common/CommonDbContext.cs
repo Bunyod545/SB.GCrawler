@@ -39,7 +39,7 @@ namespace SB.GCrawler.Api.Contexts
         /// 
         /// </summary>
         /// <returns></returns>
-        private DatabaseConfigInfo GetDbConfigInfo()
+        public DatabaseConfigInfo GetDbConfigInfo()
         {
             var config = _configService.GetDbConfig();
             if (config == null || string.IsNullOrEmpty(config.Provider) || string.IsNullOrEmpty(config.ConnectionString))

@@ -5,7 +5,7 @@ namespace SB.GCrawler.Api.Contexts.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("admin_tokens")]
+    [Table("admin_tokens", Schema = "public")]
     public class GCrawlerAdminToken
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace SB.GCrawler.Api.Contexts.Tables
         /// 
         /// </summary>
         [ForeignKey(nameof(AdminId))]
-        public GCrawlerAdmin User { get; set; }
+        public virtual GCrawlerAdmin User { get; set; }
 
         /// <summary>
         /// 
