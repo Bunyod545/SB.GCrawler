@@ -1,30 +1,33 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace SB.GCrawler.Api.Contexts.Tables
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum GCrawlerSiteRobotType
+    public enum GCrawlerSiteRobotsType
     {
         /// <summary>
         /// 
         /// </summary>
         Unknown = 0,
-        
+
         /// <summary>
         /// 
         /// </summary>
-        Agent = 0,
-        
+        Agent = 1,
+
         /// <summary>
         /// 
         /// </summary>
-        Allow = 0,
-        
+        Allow = 2,
+
         /// <summary>
         /// 
         /// </summary>
-        Disallow = 0,
+        Disallow = 3,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        SiteMap = 4,
     }
 }

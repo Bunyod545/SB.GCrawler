@@ -1,4 +1,5 @@
-﻿using SB.GCrawler.Services.FileDownloaders;
+﻿using SB.Auto.DependenyInjection;
+using SB.GCrawler.Services.FileDownloaders;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,7 @@ namespace SB.GCrawler.Services.SiteMapDownloaders
     /// <summary>
     /// 
     /// </summary>
+    [ScopedService]
     public class SiteMapDownloader : ISiteMapDownloader
     {
         /// <summary>

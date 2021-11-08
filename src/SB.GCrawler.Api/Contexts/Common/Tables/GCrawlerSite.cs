@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SB.GCrawler.Api.Contexts.Tables
@@ -19,6 +20,16 @@ namespace SB.GCrawler.Api.Contexts.Tables
         /// </summary>
         [Column("url")]
         public string Url { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? LastCrawlDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? RobotsFileLastUpdateDate { get; set; }
 
         /// <summary>
         /// 

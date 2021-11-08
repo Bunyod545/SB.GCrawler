@@ -34,7 +34,7 @@ namespace SB.GCrawler.Services.RobotsTexts
         /// <returns></returns>
         public List<RobotsTextLine> ParseLines(string content)
         {
-            var lineTexts = content.Split(new string[] { "\n" }, StringSplitOptions.None);
+            var lineTexts = content.Split(new string[] { RobotsTextConsts.NewLine }, StringSplitOptions.None);
             var lineHelper = new RobotsTextsLineHelper();
 
             return lineTexts.Select((s, i) => lineHelper.ParseLine(s, i)).ToList();

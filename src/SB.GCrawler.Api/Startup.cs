@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SB.GCrawler.Api.Logics;
 using SB.GCrawler.Api.Services.Database;
+using SB.GCrawler.Api.Services.SiteCrawlers;
+using SB.GCrawler.Services.RobotsTexts;
 
 namespace SB.GCrawler.Api
 {
@@ -35,15 +37,17 @@ namespace SB.GCrawler.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.UseAutoDI();
             services.AddJwt();
             services.AddHttpContextAccessor();
+            services.AddScoped<IRobotsTextsService, RobotsTextsService>();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SB.GCrawler.Api", Version = "v1" });
             });
+
+            services.UseAutoDI();
         }
 
         /// <summary>
@@ -70,7 +74,9 @@ namespace SB.GCrawler.Api
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-            //MigrateDatabase(app);
+
+            MigrateDatabase(app);
+            StartSitesCrawl(app);
         }
 
         /// <summary>
@@ -84,6 +90,19 @@ namespace SB.GCrawler.Api
 
             var databaseService = scope.ServiceProvider.GetService<IDatabaseService>();
             databaseService.MigrateDatabase();
+        }
+
+        /// <summary>
+        /// 
+        /// /// </summary>
+        /// <param name="app"></param>
+        private void StartSitesCrawl(IApplicationBuilder app)
+        {
+            var scopeFactory = app.ApplicationServices.GetService<IServiceScopeFactory>();
+            using var scope = scopeFactory.CreateScope();
+
+            var databaseService = scope.ServiceProvider.GetService<ISiteCrawlerService>();
+            databaseService.StartCrawlTask();
         }
     }
 }

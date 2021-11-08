@@ -17,5 +17,10 @@ namespace SB.GCrawler.Api.Contexts
         /// 
         /// </summary>
         public DbSet<GCrawlerSitePage> SitePages { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<GCrawlerSiteRobots> SiteRobots { get; set; }
     }
 }

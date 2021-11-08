@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SB.Auto.DependenyInjection;
+using System;
 using System.Net;
 
 namespace SB.GCrawler.Services.FileDownloaders
@@ -6,6 +7,7 @@ namespace SB.GCrawler.Services.FileDownloaders
     /// <summary>
     /// 
     /// </summary>
+    [ScopedService]
     public class FileDownloader : IFileDownloader
     {
         /// <summary>
@@ -37,16 +39,14 @@ namespace SB.GCrawler.Services.FileDownloaders
         /// <returns></returns>
         private FileDownloadInfo TryGetFileInfo(string url)
         {
-            var request = WebRequest.CreateHttp(url);
-            request.UserAgent = DownloadUserAgent;
-
-            var response = (HttpWebResponse)request.GetResponseAsync().Result;
-            var length = response.ContentLength;
+            var wc = new WebClient();
+            wc.OpenRead(url);
 
             var result = new FileDownloadInfo();
-            result.Size = length;
+            result.Size = Convert.ToInt64(wc.ResponseHeaders["Content-Length"]);
+            result.LastChangeDate = DateTime.Parse(wc.ResponseHeaders["Last-Modified"]);
 
-            response.Dispose();
+            wc.Dispose();
             return result;
         }
 

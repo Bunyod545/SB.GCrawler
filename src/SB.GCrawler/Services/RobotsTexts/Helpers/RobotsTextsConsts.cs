@@ -8,6 +8,16 @@ namespace SB.GCrawler.Services.RobotsTexts
         /// <summary>
         /// 
         /// </summary>
+        public const string RobotsTextFileName = "robots.txt";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string NewLine = "\n";
+
+        /// <summary>
+        /// 
+        /// </summary>
         public const string Delimmer = ":";
 
         /// <summary>

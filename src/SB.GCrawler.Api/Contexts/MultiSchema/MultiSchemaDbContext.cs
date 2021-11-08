@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using SB.Auto.DependenyInjection;
 using SB.GCrawler.Api.Contexts.MultiSchema;
+using SB.GCrawler.Api.Contexts.MultiSchema.Helpers;
+using SB.GCrawler.Api.Contexts.Tables;
+using SB.GCrawler.Api.Services;
 using SB.GCrawler.Api.Services.Configs.Database;
 using System;
 
@@ -22,6 +25,11 @@ namespace SB.GCrawler.Api.Contexts
         /// <summary>
         /// 
         /// </summary>
+        private readonly ICurrentSchemaService _currentSchemaService;
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <value></value>
         public string TableSchema { get; set; }
 
@@ -29,9 +37,27 @@ namespace SB.GCrawler.Api.Contexts
         /// 
         /// </summary>
         /// <param name="configService"></param>
-        public MultiSchemaDbContext(IDatabaseConfigService configService)
+        /// <param name="currentSchemaService"></param>
+        public MultiSchemaDbContext(IDatabaseConfigService configService, ICurrentSchemaService currentSchemaService)
         {
             _configService = configService;
+            _currentSchemaService = currentSchemaService;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetCurrentSchema()
+        {
+            TableSchema = _currentSchemaService.GetCurrentSchema();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetSiteSchema(GCrawlerSite site)
+        {
+            TableSchema = string.Format(MultiSchemaHelper.SchemaTemplate, site.Id);
         }
 
         /// <summary>

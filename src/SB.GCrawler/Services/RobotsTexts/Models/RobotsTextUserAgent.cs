@@ -16,6 +16,12 @@ namespace SB.GCrawler.Services.RobotsTexts
         /// 
         /// </summary>
         /// <value></value>
+        public string Comment { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <value></value>
         public List<RobotsTextRule> Rules { get; set; }
     }
 }

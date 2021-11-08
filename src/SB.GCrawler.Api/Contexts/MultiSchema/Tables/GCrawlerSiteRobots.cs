@@ -18,19 +18,19 @@ namespace SB.GCrawler.Api.Contexts.Tables
         /// 
         /// </summary>
         [Column("type")]
-        public string type { get; set; }
+        public GCrawlerSiteRobotsType Type { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [Column("value")]
-        public string value { get; set; }
+        public string Value { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [Column("comment")]
-        public string comment { get; set; }
+        public string Comment { get; set; }
 
         /// <summary>
         /// 

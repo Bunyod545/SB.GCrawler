@@ -3,13 +3,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Logics\**"/>
-    <EmbeddedResource Remove="Logics\**"/>
-    <None Remove="Logics\**"/>
+    <Compile Remove="Logics\**" />
+    <EmbeddedResource Remove="Logics\**" />
+    <None Remove="Logics\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="SB.Auto.DependecyInjection.AspNetCore" Version="1.0.3"/>
-    <PackageReference Include="SB.Common" Version="1.0.31"/>
-    <PackageReference Include="AngleSharp" Version="0.16.1"/>
+    <PackageReference Include="SB.Auto.DependecyInjection.AspNetCore" Version="1.0.3" />
+    <PackageReference Include="SB.Common" Version="1.0.31" />
+    <PackageReference Include="AngleSharp" Version="0.16.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>

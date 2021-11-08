@@ -1,4 +1,4 @@
 {
   "Provider": "Postgres",
-  "ConnectionString": "Server=localhost;Port=5432;Database=gcrawler;User Id=postgres;Password=postgres;"
+  "ConnectionString": "Server=localhost;Port=5432;Database=gcrawler;User Id=postgres;Password=Formula1;"
 }

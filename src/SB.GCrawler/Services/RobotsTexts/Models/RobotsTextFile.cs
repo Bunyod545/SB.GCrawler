@@ -38,7 +38,7 @@ namespace SB.GCrawler.Services.RobotsTexts
         /// </summary>
         public RobotsTextFile(string baseUrl) : this()
         {
-            this.BaseUrl = baseUrl;
+            BaseUrl = baseUrl;
         }
 
         /// <summary>
