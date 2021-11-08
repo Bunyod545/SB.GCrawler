@@ -6,7 +6,7 @@ using SB.GCrawler.Api.Services.Users;
 using SB.GCrawler.Api.Services.Users.Models;
 using SB.GCrawler.Api.Services.UserTokens.Models;
 
-namespace SB.GCrawler.Api.Controllers.Auths
+namespace SB.GCrawler.Api.Controllers
 {
     /// <summary>
     /// 

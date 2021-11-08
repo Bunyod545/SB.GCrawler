@@ -37,7 +37,8 @@ namespace SB.GCrawler.Api
             services.AddCors();
             services.UseAutoDI();
             services.AddJwt();
-
+            services.AddHttpContextAccessor();
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -55,8 +56,6 @@ namespace SB.GCrawler.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SB.GCrawler.Api"));
             }
 
             app.UseCors(builder => builder
@@ -64,11 +63,14 @@ namespace SB.GCrawler.Api
                 .AllowAnyHeader()
                 .AllowAnyMethod());
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SB.GCrawler.Api"));
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-            MigrateDatabase(app);
+            //MigrateDatabase(app);
         }
 
         /// <summary>

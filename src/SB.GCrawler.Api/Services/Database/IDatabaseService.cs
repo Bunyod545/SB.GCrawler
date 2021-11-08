@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace SB.GCrawler.Api.Services.Database
 {
     /// <summary>
@@ -14,6 +16,12 @@ namespace SB.GCrawler.Api.Services.Database
         /// 
         /// </summary>
         void MigrateMultiSchemas(); 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="siteId"></param>
+        Task MigrateMultiSchemaAsync(long siteId);
 
         /// <summary>
         /// 

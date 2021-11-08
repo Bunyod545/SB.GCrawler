@@ -47,7 +47,7 @@ namespace SB.GCrawler.Api.Services.Database
 
             using var scope = _serviceScopeFactory.CreateScope();
             using var context = scope.ServiceProvider.GetService<CommonDbContext>();
-            
+
             context.Database.Migrate();
             MigrateMultiSchemas();
         }
@@ -64,11 +64,20 @@ namespace SB.GCrawler.Api.Services.Database
             using var scope = _serviceScopeFactory.CreateScope();
             using var context = scope.ServiceProvider.GetService<CommonDbContext>();
 
-            var sites = context.Sites.Select(s => s.Id).ToList();
+            var sites = context.Sites.Select(s => s.Id).OrderBy(o => o).ToList();
             var options = new ParallelOptions();
-            options.MaxDegreeOfParallelism = 10;
+            options.MaxDegreeOfParallelism = 2;
 
             Parallel.ForEach(sites, options, MigrateMultiSchema);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="siteId"></param>
+        public Task MigrateMultiSchemaAsync(long siteId)
+        {
+            return Task.Run(() => MigrateMultiSchema(siteId));
         }
 
         /// <summary>

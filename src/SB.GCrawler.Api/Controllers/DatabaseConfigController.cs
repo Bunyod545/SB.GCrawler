@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SB.GCrawler.Api.Services.Configs.Database;
 
-namespace SB.GCrawler.Api.Controllers.Configs
+namespace SB.GCrawler.Api.Controllers
 {
     /// <summary>
     /// 

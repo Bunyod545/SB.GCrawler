@@ -9,6 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SB.Auto.DependecyInjection.AspNetCore" Version="1.0.3"/>
+    <PackageReference Include="SB.Common" Version="1.0.31"/>
     <PackageReference Include="AngleSharp" Version="0.16.1"/>
   </ItemGroup>
 </Project>
