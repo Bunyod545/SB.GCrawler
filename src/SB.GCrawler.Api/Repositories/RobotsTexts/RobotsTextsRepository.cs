@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SB.Auto.DependenyInjection;
-using SB.GCrawler.Api.Contexts;
 using SB.GCrawler.Api.Contexts.Tables;
+using SB.GCrawler.Repositories.RobotsTexts;
 using SB.GCrawler.Services.RobotsTexts;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,16 +31,16 @@ namespace SB.GCrawler.Api.Services.RobotsTexts
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="site"></param>
+        /// <param name="siteId"></param>
         /// <param name="robotsTextFile"></param>
-        public void SaveRobotsFile(GCrawlerSite site, RobotsTextFile robotsTextFile)
+        public void SaveRobotsFile(long siteId, RobotsTextFile robotsTextFile)
         {
-            var context = CreateContext(site);
+            var context = _serviceScopeFactory.CreateContext(siteId);
             var robotsTexts = context.SiteRobots.ToList();
             context.SiteRobots.RemoveRange(robotsTexts);
 
-            var rules = robotsTextFile.UserAgents.SelectMany(s => ConvertUserAgentToDbInfo(site, s)).ToList();
-            var sitemaps = robotsTextFile.SiteMaps.Select(s => ConvertSiteMapToDbInfo(site, s)).ToList();
+            var rules = robotsTextFile.UserAgents.SelectMany(s => ConvertUserAgentToDbInfo(siteId, s)).ToList();
+            var sitemaps = robotsTextFile.SiteMaps.Select(s => ConvertSiteMapToDbInfo(siteId, s)).ToList();
 
             context.SiteRobots.AddRange(rules);
             context.SiteRobots.AddRange(sitemaps);
@@ -50,21 +50,21 @@ namespace SB.GCrawler.Api.Services.RobotsTexts
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="site"></param>
+        /// <param name="siteId"></param>
         /// <param name="userAgent"></param>
         /// <returns></returns>
-        private List<GCrawlerSiteRobots> ConvertUserAgentToDbInfo(GCrawlerSite site, RobotsTextUserAgent userAgent)
+        private List<GCrawlerSiteRobots> ConvertUserAgentToDbInfo(long siteId, RobotsTextUserAgent userAgent)
         {
             var dbAgent = new GCrawlerSiteRobots();
             dbAgent.Type = GCrawlerSiteRobotsType.Agent;
-            dbAgent.SiteId = site.Id;
+            dbAgent.SiteId = siteId;
             dbAgent.Value = userAgent.AgentName;
             dbAgent.Comment = userAgent.Comment;
 
             var result = new List<GCrawlerSiteRobots>();
             result.Add(dbAgent);
 
-            var rules = userAgent.Rules.Select(s => ConvertAccessToDbInfo(site, s)).ToList();
+            var rules = userAgent.Rules.Select(s => ConvertAccessToDbInfo(siteId, s)).ToList();
             result.AddRange(rules);
 
             return result;
@@ -73,15 +73,15 @@ namespace SB.GCrawler.Api.Services.RobotsTexts
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="site"></param>
+        /// <param name="siteId"></param>
         /// <param name="rule"></param>
         /// <returns></returns>
-        private GCrawlerSiteRobots ConvertAccessToDbInfo(GCrawlerSite site, RobotsTextRule rule)
+        private GCrawlerSiteRobots ConvertAccessToDbInfo(long siteId, RobotsTextRule rule)
         {
             var dbRule = new GCrawlerSiteRobots();
             dbRule.Value = rule.Url;
             dbRule.Comment = rule.Comment;
-            dbRule.SiteId = site.Id;
+            dbRule.SiteId = siteId;
 
             if (rule.RuleType == RobotsTextRuleType.Allow)
                 dbRule.Type = GCrawlerSiteRobotsType.Allow;
@@ -95,16 +95,16 @@ namespace SB.GCrawler.Api.Services.RobotsTexts
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="site"></param>
+        /// <param name="siteId"></param>
         /// <param name="siteMap"></param>
         /// <returns></returns>
-        private GCrawlerSiteRobots ConvertSiteMapToDbInfo(GCrawlerSite site, RobotsTextSiteMap siteMap)
+        private GCrawlerSiteRobots ConvertSiteMapToDbInfo(long siteId, RobotsTextSiteMap siteMap)
         {
             var dbSiteMap = new GCrawlerSiteRobots();
             dbSiteMap.Type = GCrawlerSiteRobotsType.SiteMap;
             dbSiteMap.Value = siteMap.Url;
             dbSiteMap.Comment = siteMap.Comment;
-            dbSiteMap.SiteId = site.Id;
+            dbSiteMap.SiteId = siteId;
 
             return dbSiteMap;
         }
@@ -112,11 +112,11 @@ namespace SB.GCrawler.Api.Services.RobotsTexts
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="site"></param>
+        /// <param name="siteId"></param>
         /// <returns></returns>
-        public string GetRobotsFile(GCrawlerSite site)
+        public string GetRobotsFile(long siteId)
         {
-            var context = CreateContext(site);
+            var context = _serviceScopeFactory.CreateContext(siteId);
             var robots = context.SiteRobots.ToList();
             var robotsText = robots.Select(GetRobotsTextLine).ToList();
 
@@ -154,19 +154,6 @@ namespace SB.GCrawler.Api.Services.RobotsTexts
         private string ConvertRobotsTextLine(string key, GCrawlerSiteRobots robotsLine)
         {
             return $"{key}: {robotsLine.Value}";
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        private MultiSchemaDbContext CreateContext(GCrawlerSite site)
-        {
-            var scope = _serviceScopeFactory.CreateScope();
-            var context = scope.ServiceProvider.GetService<MultiSchemaDbContext>();
-
-            context.SetSiteSchema(site);
-            return context;
         }
     }
 }

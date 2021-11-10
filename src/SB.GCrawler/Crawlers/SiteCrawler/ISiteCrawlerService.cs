@@ -1,4 +1,4 @@
-﻿namespace SB.GCrawler.Api.Services.SiteCrawlers
+﻿namespace SB.GCrawler.Crawlers.SiteCrawler
 {
     /// <summary>
     /// 
@@ -8,6 +8,7 @@
         /// <summary>
         /// 
         /// </summary>
-        void StartCrawlTask();
+        /// <param name="args"></param>
+        void Crawl(SiteCrawlArgs args);
     }
 }

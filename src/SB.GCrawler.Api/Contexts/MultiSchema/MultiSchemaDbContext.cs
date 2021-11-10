@@ -55,9 +55,9 @@ namespace SB.GCrawler.Api.Contexts
         /// <summary>
         /// 
         /// </summary>
-        public void SetSiteSchema(GCrawlerSite site)
+        public void SetSiteSchema(long siteId)
         {
-            TableSchema = string.Format(MultiSchemaHelper.SchemaTemplate, site.Id);
+            TableSchema = string.Format(MultiSchemaHelper.SchemaTemplate, siteId);
         }
 
         /// <summary>

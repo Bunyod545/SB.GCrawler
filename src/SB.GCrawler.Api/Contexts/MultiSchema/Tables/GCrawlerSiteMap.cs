@@ -23,18 +23,6 @@ namespace SB.GCrawler.Api.Contexts.Tables
         /// <summary>
         /// 
         /// </summary>
-        [Column("user_id")]
-        public long UserId { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [ForeignKey(nameof(UserId))]
-        public virtual GCrawlerUser User { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         [Column("site_id")]
         public long SiteId { get; set; }
 

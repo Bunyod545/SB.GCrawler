@@ -101,7 +101,7 @@ namespace SB.GCrawler.Api
             var scopeFactory = app.ApplicationServices.GetService<IServiceScopeFactory>();
             using var scope = scopeFactory.CreateScope();
 
-            var databaseService = scope.ServiceProvider.GetService<ISiteCrawlerService>();
+            var databaseService = scope.ServiceProvider.GetService<ISiteCrawlerTaskService>();
             databaseService.StartCrawlTask();
         }
     }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SB.GCrawler.Api.Contexts;
@@ -9,9 +10,10 @@ using SB.GCrawler.Api.Contexts;
 namespace SB.GCrawler.Api.Migrations.MultiSchema
 {
     [DbContext(typeof(MultiSchemaDbContext))]
-    partial class MultiSchemaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211110081958_GCrawlerSiteMapUserColumnRemoved")]
+    partial class GCrawlerSiteMapUserColumnRemoved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
